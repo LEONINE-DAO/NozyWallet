@@ -1,0 +1,56 @@
+[package]
+name = "nozy"
+version = "0.1.0"
+edition = "2021"
+authors = ["Lowo88 <your-email@example.com>"]
+description = "Shielded-Only Zcash Payment System"
+license = "MIT"
+
+[dependencies]
+# Core dependencies
+serde = { version = "1.0", features = ["derive"] }
+thiserror = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+reqwest = { version = "0.11", features = ["blocking", "json"] }
+serde_json = "1.0"
+hex = "0.4"  # For hex encoding and address generation
+
+# CLI dependencies
+clap = { version = "4.0", features = ["derive"] }
+colored = "2.0"
+
+# Core dependencies
+bip39 = "2.0"  # For seed phrase generation
+sha2 = "0.10"  # For seed phrase hashing
+rand = "0.8"   # For entropy generation
+
+# Cryptography & HD Wallet
+bip32 = "0.5"  # For HD wallet key derivation (step by step)
+aes-gcm = "0.10"  # For encrypted private key storage
+pbkdf2 = "0.12"  # For password-based key derivation
+hmac = "0.12"  # For HMAC in key derivation
+tokio = { version = "1.0", features = ["fs"] }  # For async file operations
+tempfile = "3.0"  # For temporary directories in tests
+
+# REAL Zcash Protocol Dependencies
+# Using modern, compatible crates instead of old Zcash ones
+pallas = "0.20"           # Modern Zcash-compatible primitives
+redjubjub = "0.5"         # Zcash signature schemes
+reddsa = "0.3"            # Zcash signature schemes
+
+# Transaction Signing & Cryptography
+ed25519-dalek = "2.0"  # For EdDSA signatures
+curve25519-dalek = "4.0"  # For elliptic curve operations
+blake2b_simd = "1.0"  # For BLAKE2b hashing (Zcash uses this)
+group = "0.13"  # For elliptic curve group operations
+ff = "0.13"  # For finite field arithmetic
+subtle = "2.4"  # For constant-time operations
+
+# Official Zcash crates from librustzcash
+zcash_address = "0.9.0"
+zcash_keys = { version = "0.10.1", features = ["orchard", "sapling"] }
+zcash_primitives = "0.24.0"
+
+[[bin]]
+name = "nozy"
+path = "src/main.rs" 
